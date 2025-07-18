@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ContextGenerator } from "@/components/ContextGenerator";
 import { AuthModal } from "@/components/AuthModal";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -38,6 +39,10 @@ const Index = () => {
     setShowGenerator(true);
   };
 
+  const handleBackToHome = () => {
+    setShowGenerator(false);
+  };
+
   const handleSignOut = () => {
     setIsAuthenticated(false);
     setShowGenerator(false);
@@ -47,15 +52,18 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-background relative overflow-hidden">
+      <AnimatedBackground />
       <Header
         onSignIn={() => setShowAuthModal(true)}
         onSignUp={() => setShowAuthModal(true)}
         isAuthenticated={isAuthenticated}
         onSignOut={handleSignOut}
+        onBackToHome={handleBackToHome}
+        showBackButton={showGenerator}
       />
       
-      <main className="pb-16">
+      <main className="pb-16 relative z-10">
         {!showGenerator ? (
           <HeroSection onGetStarted={handleGetStarted} />
         ) : (
