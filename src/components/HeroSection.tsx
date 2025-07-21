@@ -11,9 +11,11 @@ interface HeroSectionProps {
 
 export function HeroSection({ onGetStarted }: HeroSectionProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    setIsClient(true);
+    const timer = setTimeout(() => setIsLoaded(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -76,12 +78,13 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/80" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          className="max-w-4xl mx-auto text-center space-y-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
-        >
+        {isClient && (
+          <motion.div 
+            className="max-w-4xl mx-auto text-center space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+          >
           {/* Main Heading */}
           <motion.div className="space-y-4" variants={itemVariants}>
             <motion.div 
@@ -235,6 +238,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
             ))}
           </motion.div>
         </motion.div>
+        )}
       </div>
     </div>
   );

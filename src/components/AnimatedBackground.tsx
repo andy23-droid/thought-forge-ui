@@ -9,28 +9,33 @@ export function AnimatedBackground() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    
-    // Generate enhanced bubbles with more variety
-    const newBubbles = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 120 + 40,
-      delay: Math.random() * 8,
-      speed: Math.random() * 4 + 6,
-    }));
-    setBubbles(newBubbles);
+    // Delay mounting to prevent animation glitches on page load
+    const mountTimer = setTimeout(() => {
+      setMounted(true);
+      
+      // Generate enhanced bubbles with more variety
+      const newBubbles = Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 120 + 40,
+        delay: Math.random() * 8 + 1, // Add minimum delay to prevent instant start
+        speed: Math.random() * 4 + 6,
+      }));
+      setBubbles(newBubbles);
 
-    // Generate more diverse stars for galaxy effect
-    const newStars = Array.from({ length: 80 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 4,
-      intensity: Math.random() * 0.8 + 0.2,
-    }));
-    setStars(newStars);
+      // Generate more diverse stars for galaxy effect
+      const newStars = Array.from({ length: 80 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 4 + 0.5, // Add minimum delay
+        intensity: Math.random() * 0.8 + 0.2,
+      }));
+      setStars(newStars);
+    }, 200);
+
+    return () => clearTimeout(mountTimer);
   }, []);
 
   if (!mounted) return null;
