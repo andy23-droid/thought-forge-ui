@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ContextGenerator } from "@/components/ContextGenerator";
 import { AuthModal } from "@/components/AuthModal";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -63,11 +64,14 @@ const Index = () => {
         showBackButton={showGenerator}
       />
       
-      <main className="pb-16 relative z-10">
+      <main className="relative z-10">
         {!showGenerator ? (
-          <HeroSection onGetStarted={handleGetStarted} />
+          <>
+            <HeroSection onGetStarted={handleGetStarted} />
+            <Footer />
+          </>
         ) : (
-          <div className="container mx-auto px-4 py-16">
+          <div className="container mx-auto px-4 py-16 min-h-screen">
             <ContextGenerator onAuthRequired={handleAuthRequired} />
           </div>
         )}
