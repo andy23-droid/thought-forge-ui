@@ -29,27 +29,30 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 10
-      }
-    }
-  };
-
-  const cardVariants = {
     hidden: { y: 80, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring" as const,
-        stiffness: 80,
-        damping: 12
+        stiffness: 120,
+        damping: 15,
+        duration: 0.8
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { y: 100, opacity: 0, scale: 0.9 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+        duration: 0.9
       }
     }
   };

@@ -5,6 +5,8 @@ import { ContextGenerator } from "@/components/ContextGenerator";
 import { AuthModal } from "@/components/AuthModal";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Footer } from "@/components/Footer";
+import { Testimonials } from "@/components/Testimonials";
+import { ProjectTemplates } from "@/components/ProjectTemplates";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -68,6 +70,8 @@ const Index = () => {
         {!showGenerator ? (
           <>
             <HeroSection onGetStarted={handleGetStarted} />
+            <Testimonials />
+            <ProjectTemplates />
             <Footer />
           </>
         ) : (
